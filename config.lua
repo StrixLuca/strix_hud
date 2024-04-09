@@ -91,7 +91,7 @@ Config.RemoveHealth = 5
 -- stress settings
 ----------------------------------
 Config.Intensity = {
-    ["shake"] = {
+    shake = {
         [1] = {
             min = 50,
             max = 60,

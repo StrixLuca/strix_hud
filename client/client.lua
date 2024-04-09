@@ -67,7 +67,7 @@ end)
 ------------------------------------------------
 local function GetShakeIntensity(stresslevel)
     local retval = 0.05
-    for _, v in pairs(Config.Intensity['shake']) do
+    for _, v in pairs(Config.Intensity.shake) do
         if stresslevel >= v.min and stresslevel <= v.max then
             retval = v.intensity
             break
@@ -173,8 +173,8 @@ CreateThread(function()
 
             local voice = 0
             local talking = Citizen.InvokeNative(0x33EEF97F, cache.playerId)
-            if LocalPlayer.state['proximity'] then
-                voice = LocalPlayer.state['proximity'].distance
+            if LocalPlayer.state.proximity then
+                voice = LocalPlayer.state.proximity.distance
             end
 
             -- horse health, stamina & cleanliness
