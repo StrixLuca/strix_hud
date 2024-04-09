@@ -1,7 +1,11 @@
-# RexshackGaming
-- discord : https://discord.gg/eW3ADkf4Af
-- youtube : https://www.youtube.com/channel/UCikEgGfXO-HCPxV5rYHEVbA
-- github : https://github.com/Rexshack-RedM
+
+
+
+
+
+# Preview
+- https://imgur.com/xX6eQ0H
+- https://imgur.com/x77vaYZ
 
 # Dependancies
 - rsg-core
@@ -9,6 +13,7 @@
 
 # Installation
 - ensure that the dependancies are added and started
+- change name to rsg-hud
 - add rsg-hud to your resources folder
 
 # Starting the resource
@@ -19,5 +24,4 @@
 - telegram visual notification
 
 # Credits
-- https://github.com/qbcore-redm-framework/qbr-hud
-- https://github.com/QRCore-RedM-Re/qr-hud
+- https://github.com/Rexshack-RedM/rsg-hud
