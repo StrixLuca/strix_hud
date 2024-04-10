@@ -24,9 +24,7 @@ server_scripts {
 }
 
 dependencies {
-    'rsg-core',
     'ox_lib',
-    'rsg-telegram',
 }
 
 ui_page 'html/index.html'
