@@ -1,4 +1,9 @@
 
+# Faq
+- if pvp off you see not the pvp icon if the pvp on then you see the pvp icon
+- use full ox_lib
+- Good performance
+- Big Config 
 
 
 
