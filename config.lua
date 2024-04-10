@@ -1,5 +1,14 @@
 Config = {}
 
+
+
+
+----------------------------------
+-- rsg-telegram
+----------------------------------
+Config.telegram = true -- true or false if you use rsg-telegram
+Config.TelegramCheck = 5000 -- amount of milliseconds to check your telegrams
+
 ----------------------------------
 -- stress settings
 ----------------------------------
@@ -21,10 +30,6 @@ Config.HideHorseHealthNative  = true
 Config.HideHorseStaminaNative = true
 Config.HideHorseCourageNative = true
 
-----------------------------------
--- telegrame check settings
-----------------------------------
-Config.TelegramCheck = 5000 -- amount of milliseconds to check your telegrams
 
 ----------------------------------
 -- minimap / compass settings

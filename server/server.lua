@@ -1,38 +1,12 @@
 local RSGCore = exports['rsg-core']:GetCoreObject()
 local ResetStress = false
 
------------------------------------------------------------------------
--- version checker
------------------------------------------------------------------------
-local function versionCheckPrint(_type, log)
-    local color = _type == 'success' and '^2' or '^1'
 
-    print(('^5['..GetCurrentResourceName()..']%s %s^7'):format(color, log))
-end
 
-local function CheckVersion()
-    PerformHttpRequest('https://raw.githubusercontent.com/Rexshack-RedM/rsg-hud/main/version.txt', function(err, text, headers)
-        local currentVersion = GetResourceMetadata(GetCurrentResourceName(), 'version')
-
-        if not text then 
-            versionCheckPrint('error', 'Currently unable to run a version check.')
-            return 
-        end
-
-        --versionCheckPrint('success', ('Current Version: %s'):format(currentVersion))
-        --versionCheckPrint('success', ('Latest Version: %s'):format(text))
-        
-        if text == currentVersion then
-            versionCheckPrint('success', 'You are running the latest version.')
-        else
-            versionCheckPrint('error', ('You are currently running an outdated version, please update to version %s'):format(text))
-        end
-    end)
-end
-
------------------------------------------------------------------------
-
-RSGCore.Commands.Add('cash', 'Check Cash Balance', {}, false, function(source, args)
+-------- commands
+lib.addCommand('cash', {
+    help = locale("cash"),
+}, function(source)
     local Player = RSGCore.Functions.GetPlayer(source)
     local cashamount = Player.PlayerData.money.cash
     if cashamount ~= nil then
@@ -42,7 +16,11 @@ RSGCore.Commands.Add('cash', 'Check Cash Balance', {}, false, function(source, a
     end
 end)
 
-RSGCore.Commands.Add('bank', 'Check Bank Balance', {}, false, function(source, args)
+
+
+lib.addCommand('bank', {
+    help = locale("bank"),
+}, function(source)
     local Player = RSGCore.Functions.GetPlayer(source)
     local bankamount = Player.PlayerData.money.bank
     if bankamount ~= nil then
@@ -51,8 +29,9 @@ RSGCore.Commands.Add('bank', 'Check Bank Balance', {}, false, function(source, a
         return
     end
 end)
-
-RSGCore.Commands.Add('bloodmoney', 'Check Bloodmoney Balance', {}, false, function(source, args)
+lib.addCommand('bloodmoney', {
+    help = locale("blood"),
+}, function(source)
     local Player = RSGCore.Functions.GetPlayer(source)
     local bloodmoneyamount = Player.PlayerData.money.bloodmoney
     if bloodmoneyamount ~= nil then
@@ -61,6 +40,7 @@ RSGCore.Commands.Add('bloodmoney', 'Check Bloodmoney Balance', {}, false, functi
         return
     end
 end)
+
 
 RegisterNetEvent('hud:server:GainStress', function(amount)
     local src = source
@@ -81,7 +61,7 @@ RegisterNetEvent('hud:server:GainStress', function(amount)
         end
         Player.Functions.SetMetaData('stress', newStress)
         TriggerClientEvent('hud:client:UpdateStress', src, newStress)
-        TriggerClientEvent('ox_lib:notify', src, {title = Lang:t("info.getstress"), type = 'inform', duration = 5000 })
+        TriggerClientEvent('ox_lib:notify', src, {title = locale("info.getstress"), type = 'inform', duration = 5000 })
     end
 end)
 
@@ -102,7 +82,7 @@ RegisterNetEvent('hud:server:GainThirst', function(amount)
             end
         Player.Functions.SetMetaData('thirst', newThirst)
         TriggerClientEvent('hud:client:UpdateThirst', src, newThirst)
-        TriggerClientEvent('ox_lib:notify', src, {title = Lang:t("info.thirsty"), type = 'inform', duration = 5000 })
+        TriggerClientEvent('ox_lib:notify', src, {title = locale("info.thirsty"), type = 'inform', duration = 5000 })
     end
 end)
 
@@ -125,11 +105,12 @@ RegisterNetEvent('hud:server:RelieveStress', function(amount)
         end
         Player.Functions.SetMetaData('stress', newStress)
         TriggerClientEvent('hud:client:UpdateStress', src, newStress)
-        TriggerClientEvent('ox_lib:notify', src, {title = Lang:t("info.relaxing"), type = 'inform', duration = 5000 })
+        TriggerClientEvent('ox_lib:notify', src, {title = locale("info.relaxing"), type = 'inform', duration = 5000 })
     end
 end)
 
 -- count telegrams for player
+if Config.telegram then
 RSGCore.Functions.CreateCallback('hud:server:getTelegramsAmount', function(source, cb)
     local src = source
     local Player = RSGCore.Functions.GetPlayer(src)
@@ -140,8 +121,5 @@ RSGCore.Functions.CreateCallback('hud:server:getTelegramsAmount', function(sourc
         cb(0)
     end
 end)
-
---------------------------------------------------------------------------------------------------
--- start version check
---------------------------------------------------------------------------------------------------
-CheckVersion()
+end
+lib.versionCheck('StrixLuca/rsg-hud-edit')

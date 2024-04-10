@@ -1,12 +1,10 @@
 local RSGCore = exports['rsg-core']:GetCoreObject()
 local speed = 0.0
-local radarActive = false
 local stress = 0
 local hunger = 100
 local thirst = 100
 local cashAmount = 0
 local bankAmount = 0
-local isLoggedIn = false
 local youhavemail = false
 local incinematic = false
 local inBathing = false
@@ -249,9 +247,10 @@ CreateThread(function()
         Wait(500)
         local interiorId = GetInteriorFromEntity(cache.ped)
         local isMounted = IsPedOnMount(cache.ped) or IsPedInAnyVehicle(cache.ped)
+        if Config.telegram then
         local IsBirdPostApproaching = exports['rsg-telegram']:IsBirdPostApproaching()
-
         if isMounted or IsBirdPostApproaching then
+        elseif isMounted then
             if Config.MounttMinimap and showUI then
                 if Config.MountCompass then
                     SetMinimapType(3)
@@ -281,6 +280,7 @@ CreateThread(function()
             end
         end
     end
+end
 end)
 
 ------------------------------------------------
@@ -501,6 +501,7 @@ end)
 ------------------------------------------------
 -- check telegrams
 ------------------------------------------------
+if Config.telegram then
 CreateThread(function()
     while true do
         if LocalPlayer.state.isLoggedIn then
@@ -515,6 +516,7 @@ CreateThread(function()
         Wait(Config.TelegramCheck)
     end
 end)
+end
 
 ------------------------------------------------
 -- check cinematic and hide hud
