@@ -241,16 +241,16 @@ end)
 -- show minimap setup
 ------------------------------------------------
 
-local test = true
+
 CreateThread(function()
     while true do
         Wait(500)
         local interiorId = GetInteriorFromEntity(cache.ped)
         local isMounted = IsPedOnMount(cache.ped) or IsPedInAnyVehicle(cache.ped)
         if Config.telegram then
-        local IsBirdPostApproaching = exports[Config.telegramname]:IsBirdPostApproaching()
+       IsBirdPostApproaching = exports[Config.telegramname]:IsBirdPostApproaching()
+        end
         if isMounted or IsBirdPostApproaching then
-        elseif isMounted then
             if Config.MounttMinimap and showUI then
                 if Config.MountCompass then
                     SetMinimapType(3)
@@ -280,8 +280,8 @@ CreateThread(function()
             end
         end
     end
-end
 end)
+
 
 ------------------------------------------------
 -- work out temperature
