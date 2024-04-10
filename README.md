@@ -1,6 +1,6 @@
 
 # Faq
-- if pvp off you see not the pvp icon if the pvp on then you see the pvp icon
+- If PvP is disabled, the PvP icon will not be displayed. When PvP is enabled, the PvP icon will appear
 - use full ox_lib
 - Good performance
 - Big Config 
