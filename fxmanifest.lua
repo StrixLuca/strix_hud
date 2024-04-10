@@ -24,7 +24,7 @@ server_scripts {
 }
 
 dependencies {
-    'ox_lib',
+    'ox_lib'
 }
 
 ui_page 'html/index.html'
