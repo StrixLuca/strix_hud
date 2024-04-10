@@ -158,6 +158,7 @@ const playerHud = {
             showHorseCleanColor: "#a16600",
             showYouHaveMail: true,
             showPVP: true,
+            showPVPColor: "#00FF00", 
             talkingColor: "#FFFFFF",
             showTemp: true,
         }
@@ -184,120 +185,60 @@ const playerHud = {
             this.stress = data.stress;
             this.voice = data.voice;
             this.temp = data.temp;
-            this.youhavemail = data.youhavemail;
             this.pvp = data.pvp;
+            this.youhavemail = data.youhavemail;
+           
             this.talking = data.talking;
             this.showHorseStamina = data.onHorse;
             this.showHorseHealth = data.onHorse;
             this.showHorseClean = data.onHorse;
+    
             if (data.onHorse) {
                 this.horsehealth = data.horsehealth;
                 this.horsestamina = data.horsestamina;
                 this.horseclean = data.horseclean;
             }
-            if (data.health >= 100) {
-                this.showHealth = false;
-            } else {
-                this.showHealth = true;
-            }
-            if (data.health <= 30 ) {
-              this.showHealthColor = "#FF0000";
-            } else {
-                this.showHealthColor = "#FFF";
-            }
-            if (parseInt(data.stamina) >= 100) {
-                this.showStamina = false;
-            } else {
-                this.showStamina = true;
-            }
-            if (parseInt(data.stamina) <= 30 ) {
-              this.showStaminaColor = "#FF0000";
-            } else {
-                this.showStaminaColor = "#FFF";
-            }
-            if (data.hunger <= 30) {
-                this.showHungerColor = "#FF0000";
-            } else {
-                this.showHungerColor = "#FFF";
-            }
-            if (data.thirst <= 30 ) {
-                this.showThirstColor = "#FF0000";
-            } else {
-                this.showThirstColor = "#FFF";
-            }
-            if (data.cleanliness <= 30 ) {
-                this.showCleanlinessColor = "#FF0000";
-            } else {
-                this.showCleanlinessColor = "#FFF";
-            }
-            if (data.armor <= 0) {
-                this.showArmor = false;
-            } else {
-                this.showArmor = true;
-            }
-            if (data.hunger >= 100) {
-                this.showHunger = false;
-            } else {
-                this.showHunger = true;
-            }
-            if (data.thirst >= 100) {
-                this.showThirst = false;
-            } else {
-                this.showThirst = true;
-            }
-            if (data.cleanliness >= 100) {
-                this.showCleanliness = false;
-            } else {
-                this.showCleanliness = true;
-            }
-            if (data.stress <= 0) {
-                this.showStress = false;
-            } else {
-                this.showStress = true;
-            }
-            if (data.talking) {
-                this.showVoice = true;
-            } else {
-                this.showVoice = false;
-            }
-            if (data.talking) {
-                this.talkingColor = "#FF0000";
-            } else {
-                this.talkingColor = "#FFFFFF";
-            }
-            if (data.temp >= 0) {
-                this.showTemp = true;
-            } else {
-                this.showTemp = true;
-            }
-            if (data.temp <= 30) {
-                this.showTempColor = "#FDD021";
-            } else {
-                this.showTempColor = "#CFBCAE";
-            }
-            if (data.youhavemail) {
-                this.showYouHaveMail = true;
-            } else {
-                this.showYouHaveMail = false;
-            }
-            if (data.youhavemail) {
-                this.showYouHaveMailColor = "#FFD700";
-            } else {
-                this.showYouHaveMailColor = "#FFFFFF";
-            }
-            if (data.pvp) {
-                this.showPVP = true;
-            } else {
-                this.showPVP = true;
-            }
-            if (data.pvp) {
-                this.showPVPColor = "#FF0000";
-            } else {
-                this.showPVPColor = "#00FF00";
-            }
+    
+            this.showHealth = data.health >= 100 ? false : true;
+    
+            this.showHealthColor = data.health <= 30 ? "#FF0000" : "#FFF";
+    
+            this.showStamina = parseInt(data.stamina) >= 100 ? false : true;
+    
+            this.showStaminaColor = parseInt(data.stamina) <= 30 ? "#FF0000" : "#FFF";
+    
+            this.showHunger = data.hunger >=  100 ? false : true;
+    
+            this.showHungerColor = data.hunger <= 30 ? "#FF0000" : "#FFF";
+    
+            this.showThirst = data.hunger >=  100 ? false : true;
+    
+            this.showThirstColor = data.thirst <= 30 ? "#FF0000" : "#FFF";
+    
+            this.showCleanliness = data.cleanliness >=  100 ? false : true;
+    
+            this.showCleanlinessColor = data.cleanliness <= 30 ? "#FF0000" : "#FFF";
+    
+            this.showArmor = data.armor <= 0 ? false : true;
+    
+            this.showStress = data.stress <= 0 ? false : true;
+    
+            this.showVoice = data.talking ? true : false;
+    
+            this.talkingColor = data.talking ? "#FF0000" : "#FFFFFF";
+    
+            this.showTempColor = data.temp <= 30 ? "#FDD021" : "#CFBCAE";
+    
+            this.showYouHaveMail = data.youhavemail ? true : false;
+    
+            this.showYouHaveMailColor = data.youhavemail ? "#FFD700" : "#FFFFFF";
+            
+            this.showPVPColor = data.pvp ? "#00FF00" : "#00FF00";
+
+            this.showPVP  = data.pvp ? true : false;
         }
     }
-}
+    }
 const app = Vue.createApp(playerHud);
 app.use(Quasar)
 app.mount('#ui-container');
