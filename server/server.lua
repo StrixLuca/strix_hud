@@ -1,4 +1,4 @@
-local RSGCore = exports['rsg-core']:GetCoreObject()
+local RSGCore = exports[Config.core]:GetCoreObject()
 local ResetStress = false
 
 
