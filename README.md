@@ -8,8 +8,9 @@
 - https://imgur.com/x77vaYZ
 
 # Dependancies
-- rsg-core
-- rsg-telegram
+- rsg_core soon voip support 
+- ox_lib
+
 
 # Installation
 - ensure that the dependancies are added and started
