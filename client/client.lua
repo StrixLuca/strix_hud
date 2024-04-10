@@ -18,8 +18,8 @@ local clean = 0
 ------------------------------------------------
 -- hide ui
 ------------------------------------------------
-RegisterNetEvent("HideAllUI")
-AddEventHandler("HideAllUI", function()
+RegisterNetEvent('HideAllUI')
+AddEventHandler('HideAllUI', function()
     showUI = not showUI
 end)
 
@@ -89,8 +89,8 @@ end
 -- flies when not clean (Config.MinCleanliness)
 ------------------------------------------------
 local FliesSpawn = function (clean)
-    local new_ptfx_dictionary = "core"
-    local new_ptfx_name = "env_flies"
+    local new_ptfx_dictionary = 'core'
+    local new_ptfx_name = 'env_flies'
     local is_particle_effect_active = false
     local current_ptfx_dictionary = new_ptfx_dictionary
     local current_ptfx_name = new_ptfx_name
@@ -120,7 +120,7 @@ local FliesSpawn = function (clean)
         if not filesspawned and Citizen.InvokeNative(0x65BB72F29138F5D6, joaat(current_ptfx_dictionary)) then  -- HasNamedPtfxAssetLoaded
             Citizen.InvokeNative(0xA10DB07FC234DD12, current_ptfx_dictionary) -- UseParticleFxAsset
 
-            current_ptfx_handle_id = Citizen.InvokeNative(0x9C56621462FFE7A6,current_ptfx_name,PlayerPedId(),ptfx_offcet_x,ptfx_offcet_y,ptfx_offcet_z,ptfx_rot_x,ptfx_rot_y,ptfx_rot_z,bone_index,ptfx_scale,ptfx_axis_x,ptfx_axis_y,ptfx_axis_z) -- StartNetworkedParticleFxLoopedOnEntityBone
+            current_ptfx_handle_id = Citizen.InvokeNative(0x9C56621462FFE7A6,current_ptfx_name,cache.ped,ptfx_offcet_x,ptfx_offcet_y,ptfx_offcet_z,ptfx_rot_x,ptfx_rot_y,ptfx_rot_z,bone_index,ptfx_scale,ptfx_axis_x,ptfx_axis_y,ptfx_axis_z) -- StartNetworkedParticleFxLoopedOnEntityBone
             is_particle_effect_active = true
         else
             print("cant load ptfx dictionary!")
@@ -163,7 +163,7 @@ CreateThread(function()
         Wait(500)
         if LocalPlayer.state.isLoggedIn and incinematic == false and inBathing == false and inClothing == false and showUI then
             local show = true
-            local stamina = tonumber(string.format("%.2f", Citizen.InvokeNative(0x0FF421E467373FCF, cache.playerId, Citizen.ResultAsFloat())))
+            local stamina = tonumber(string.format('%.2f', Citizen.InvokeNative(0x0FF421E467373FCF, cache.playerId, Citizen.ResultAsFloat())))
             local mounted = IsPedOnMount(cache.ped)
             if IsPauseMenuActive() then
                 show = false
@@ -190,8 +190,8 @@ CreateThread(function()
                 else
                     horseclean = 100 - horseCleanliness
                 end
-                horsehealth = tonumber(string.format("%.2f", Citizen.InvokeNative(0x82368787EA73C0F7, horse) / maxHealth * 100))
-                horsestamina = tonumber(string.format("%.2f", Citizen.InvokeNative(0x775A1CA7893AA8B5, horse, Citizen.ResultAsFloat()) / maxStamina * 100))
+                horsehealth = tonumber(string.format('%.2f', Citizen.InvokeNative(0x82368787EA73C0F7, horse) / maxHealth * 100))
+                horsestamina = tonumber(string.format('%.2f', Citizen.InvokeNative(0x775A1CA7893AA8B5, horse, Citizen.ResultAsFloat()) / maxStamina * 100))
             end
 
             -- pvp status
@@ -345,40 +345,40 @@ CreateThread(function()
             -- cold health damage
             if temp < Config.MinTemp then 
                 if Config.DoHealthDamageFx then
-                    Citizen.InvokeNative(0x4102732DF6B4005F, "MP_Downed", 0, true)
+                    Citizen.InvokeNative(0x4102732DF6B4005F, 'MP_Downed', 0, true)
                 end
                 if Config.DoHealthPainSound then
                     PlayPain(cache.ped, 9, 1, true, true)
                 end
                 SetEntityHealth(cache.ped, health - Config.RemoveHealth)
-            elseif Citizen.InvokeNative(0x4A123E85D7C4CA0B, "MP_Downed") and Config.DoHealthDamageFx then
-                Citizen.InvokeNative(0xB4FD7446BAB2F394, "MP_Downed")
+            elseif Citizen.InvokeNative(0x4A123E85D7C4CA0B, 'MP_Downed') and Config.DoHealthDamageFx then
+                Citizen.InvokeNative(0xB4FD7446BAB2F394, 'MP_Downed')
             end
             
             -- hot health damage
             if temp > Config.MaxTemp then
                 if Config.DoHealthDamageFx then
-                    Citizen.InvokeNative(0x4102732DF6B4005F, "MP_Downed", 0, true)
+                    Citizen.InvokeNative(0x4102732DF6B4005F, 'MP_Downed', 0, true)
                 end
                 if Config.DoHealthPainSound then
                     PlayPain(cache.ped, 9, 1, true, true)
                 end
                 SetEntityHealth(cache.ped, health - Config.RemoveHealth)
-            elseif Citizen.InvokeNative(0x4A123E85D7C4CA0B, "MP_Downed") and Config.DoHealthDamageFx then
-                Citizen.InvokeNative(0xB4FD7446BAB2F394, "MP_Downed")
+            elseif Citizen.InvokeNative(0x4A123E85D7C4CA0B, 'MP_Downed') and Config.DoHealthDamageFx then
+                Citizen.InvokeNative(0xB4FD7446BAB2F394, 'MP_Downed')
             end
 
             -- cleanliness health damage
             if cleanliness ~= nil and cleanliness < Config.MinCleanliness then
                 if Config.DoHealthDamageFx then
-                    Citizen.InvokeNative(0x4102732DF6B4005F, "MP_Downed", 0, true)
+                    Citizen.InvokeNative(0x4102732DF6B4005F, 'MP_Downed', 0, true)
                 end
                 if Config.DoHealthPainSound then
                     PlayPain(cache.ped, 9, 1, true, true)
                 end
                 SetEntityHealth(cache.ped, health - Config.RemoveHealth)
-            elseif Citizen.InvokeNative(0x4A123E85D7C4CA0B, "MP_Downed") and Config.DoHealthDamageFx then
-                Citizen.InvokeNative(0xB4FD7446BAB2F394, "MP_Downed")
+            elseif Citizen.InvokeNative(0x4A123E85D7C4CA0B, 'MP_Downed') and Config.DoHealthDamageFx then
+                Citizen.InvokeNative(0xB4FD7446BAB2F394, 'MP_Downed')
             end
 
         end
@@ -393,19 +393,19 @@ RegisterNetEvent('hud:client:ShowAccounts', function(type, amount)
         SendNUIMessage({
             action = 'show',
             type = 'cash',
-            cash = string.format("%.2f", amount)
+            cash = string.format('%.2f', amount)
         })
     elseif type == 'bloodmoney' then
         SendNUIMessage({
             action = 'show',
             type = 'bloodmoney',
-            bloodmoney = string.format("%.2f", amount)
+            bloodmoney = string.format('%.2f', amount)
         })
     elseif type == 'bank' then
         SendNUIMessage({
             action = 'show',
             type = 'bank',
-            bank = string.format("%.2f", amount)
+            bank = string.format('%.2f', amount)
         })
     end
 end)
