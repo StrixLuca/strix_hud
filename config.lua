@@ -1,14 +1,16 @@
 Config = {}
 
-
-
+----------------------------------
+-- Core
+----------------------------------
+Config.core = 'rsg-core' ---- change to your core name
 
 ----------------------------------
 -- rsg-telegram
 ----------------------------------
 Config.telegram = true -- true or false if you use rsg-telegram
 Config.TelegramCheck = 5000 -- amount of milliseconds to check your telegrams
-
+Config.telegramname = 'rsg-telegram' --- change to your telegram name script
 ----------------------------------
 -- stress settings
 ----------------------------------

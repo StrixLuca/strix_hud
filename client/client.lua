@@ -1,4 +1,4 @@
-local RSGCore = exports['rsg-core']:GetCoreObject()
+local RSGCore = exports[Config.core]:GetCoreObject()
 local speed = 0.0
 local stress = 0
 local hunger = 100
@@ -248,7 +248,7 @@ CreateThread(function()
         local interiorId = GetInteriorFromEntity(cache.ped)
         local isMounted = IsPedOnMount(cache.ped) or IsPedInAnyVehicle(cache.ped)
         if Config.telegram then
-        local IsBirdPostApproaching = exports['rsg-telegram']:IsBirdPostApproaching()
+        local IsBirdPostApproaching = exports[Config.telegramname]:IsBirdPostApproaching()
         if isMounted or IsBirdPostApproaching then
         elseif isMounted then
             if Config.MounttMinimap and showUI then
