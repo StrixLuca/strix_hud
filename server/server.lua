@@ -122,4 +122,4 @@ RSGCore.Functions.CreateCallback('hud:server:getTelegramsAmount', function(sourc
     end
 end)
 end
-lib.versionCheck('StrixLuca/strix_hud-edit')
+lib.versionCheck('StrixLuca/strix_hud')
